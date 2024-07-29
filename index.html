@@ -17,21 +17,37 @@
 
 <div class="root">
   <div class="header">
-    <img src="/logo.png" alt="Pokèdex-Logo">
+    <div class="logo">
+      <img src="/logo.png" alt="Pokèdex-Logo">
+    </div>
+
+    <div class="space"></div>
+
+
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="Which Pokemon are you searching for?">
+    </div>
+
 
   </div>
   <div class="main">
 
     <!--<div class="loader" id="loading"></div>-->
-    <div class="loader" id="loading"></div>
 
 
     <div class="content" id="pokemon-container">
 
+      <div class="spinner-content">
+        <div class="loader" id="loading"></div>
+        <div class="loading-text">Loading...</div>
+      </div>
 
     </div>
 
 
+  </div>
+  <div class="load-button" id="more-button">
+    <button class="custom-btn btn" onclick="loadMorePokemons()"><span>Click!</span><span>Load More</span></button>
   </div>
   <div class="box footer">Footer</div>
 </div>

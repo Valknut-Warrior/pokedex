@@ -10,12 +10,29 @@
 
 html {
   height: 100%;
+  background-color: #212529 !important;
+  scrollbar-color: snow lightslategray;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.header {
+  background-color: #495057 !important;
+  color: white !important;
+}
+
+.main {
+  background-color: #212529 !important;
+  color: white !important;
+}
+
+.footer {
+  background-color: #495057 !important;
+  color: white !important;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -53,12 +70,29 @@ body {
   .header {
     display: flex;
     justify-content: center;
-    background-color: #495057;
-    color: white;
     flex-basis: 70px;
     position: sticky;
     top: 0;
     z-index: 1;
+  }
+
+  .logo {
+    display: flex;
+    align-self: flex-start;
+    flex: 4;
+    padding-left: 10px;
+  }
+
+  .space {
+    display: flex;
+    flex: 10;
+  }
+
+  .search {
+    display: flex;
+    flex: 4;
+    align-items: center;
+    padding-right: 10px;
   }
 
   .main {
@@ -66,8 +100,6 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #212529;
-    color: white;
   }
 
 
@@ -80,16 +112,31 @@ body {
     flex: 4;
     margin: 0 auto;
     max-width: 1200px;
+    min-height: 100vh;
+  }
+
+  .spinner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .loading-text {
+    margin: 30px;
+    font-family: "Lato-Bold-Italic";
+    font-size: 20px;
+    text-transform: capitalize;
   }
 
   .card-image-container {
     border-radius: 50%;
   }
 
-  .content img {
-    border-radius: 50%;
+  .card-image-container img {
     height: 200px;
     width: 200px;
+    object-fit: contain;
   }
 
   .title {
@@ -99,7 +146,8 @@ body {
     color: #fff;
     text-align: center;
     margin-top: 14px;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    margin-bottom: 0.1rem;
   }
 
   .card-header {
@@ -109,15 +157,28 @@ body {
   }
 
   .footer {
-    background-color: #495057;
     display: flex;
     flex-basis: 50px;
     justify-content: center;
-    color: white;
   }
 
   .card {
+    height: auto;
+    width: 270px;
     border-radius: 3px;
+  }
+
+  .extra-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .type {
+    display: flex;
+    justify-content: center;
+    margin: 3px 0 3px 0;
+    padding: 1px;
   }
 
   .pokemon {
@@ -132,6 +193,16 @@ body {
     position: relative;
     transition: scale 1s ease-in-out;
   }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .has-text-centered {
+    text-align: center !important;
+  }
+
 
   .loader {
     animation: rotate 1s infinite;
@@ -205,4 +276,169 @@ body {
       margin-top: 0;
     }
   }
+
+  /* --------- Card Animation ---------- */
+  .card-image-container:not(:empty):hover,
+  .card-image-container:not(:empty):focus {
+    z-index: 1;
+    opacity: 1;
+    transform: scale(1.15) rotateZ(20deg);
+    cursor: pointer;
+
+    &:after {
+      opacity: 1;
+    }
+
+    &:before {
+      opacity: 0;
+    }
+  }
+
+  .card-image-container {
+    padding: 10px;
+    opacity: 0.6;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+    transition-property: background, transform, color, opacity;
+
+    &:not(:empty):before {
+      box-shadow: -2px 2px 8px 2px hsla(0, 0%, 0%, 0.2);
+    }
+
+    &:empty {
+      opacity: 0.3;
+    }
+
+
+  }
+
+  /* Search */
+
+  .search {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  .searchTerm {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    color: black;
+  }
+
+  .searchTerm:focus {
+    color: gray;
+
+  }
+
+  /* Load More Button */
+
+  button {
+    margin: 20px;
+  }
+
+  .custom-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+  }
+
+  .btn {
+    position: relative;
+    right: 20px;
+    bottom: 20px;
+    border:none;
+    box-shadow: none;
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    -webkit-perspective: 230px;
+    perspective: 230px;
+  }
+  .btn span {
+    background: rgb(0,172,238);
+    background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
+    display: block;
+    position: absolute;
+    width: 130px;
+    height: 40px;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    border-radius: 5px;
+    margin:0;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+  .btn span:nth-child(1) {
+    box-shadow:
+            -7px -7px 20px 0px #fff9,
+            -4px -4px 5px 0px #fff9,
+            7px 7px 20px 0px #0002,
+            4px 4px 5px 0px #0001;
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transform: rotateX(90deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+  }
+  .btn span:nth-child(2) {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+    transform-origin: 50% 50% -20px;
+  }
+  .btn:hover span:nth-child(1) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+  }
+  .btn:hover span:nth-child(2) {
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    color: transparent;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+  }
+
+  .load-button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: center;
+  }
+
+
 }
