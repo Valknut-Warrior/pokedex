@@ -13,17 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Show Spinner
 async function showLoading() {
-  loadingIndicator.style.display = "block";
+  loadingIndicator.classList.add("active");
 }
 
 // Hide Spinner
 async function hideLoading() {
-  loadingIndicator.style.display = "none";
+  loadingIndicator.classList.remove("active");
 }
 
 // Hole alle Pokemons aus der API
 async function PokemonsAll(limit = 16, offset = 0) {
   try {
+    showLoading();
+
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
     let responseAllPokemonAsJson = await response.json();
 
@@ -71,7 +73,7 @@ function renderPokemonCards(pokemonData) {
     return;
   }
 
-  pokemonContainer.innerHTML = ""; // Leere den Container
+  // pokemonContainer.innerHTML = ""; // Leere den Container
 
   for (let i = 0; i < pokemonData.length; i++) {
     // console.log("Pokemon Name:", pokemonData[i].name, "Details:", pokemonData[i]);
@@ -128,6 +130,6 @@ function renderPokemonCards(pokemonData) {
 
 // Funktion zum Laden von mehr Pokémon
 async function loadMorePokemons() {
-  currentOffset += 16; // Erhöhe den Offset um 20 (oder eine andere gewünschte Anzahl)
+  currentOffset += 16; // Erhöhe den Offset um 16 (oder eine andere gewünschte Anzahl)
   await PokemonsAll(16, currentOffset); // Lade weitere Pokémon
 }
