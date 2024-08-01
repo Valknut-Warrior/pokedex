@@ -91,14 +91,6 @@ body {
     max-width: 1200px;
     min-height: 100vh;
   }
-  /*
-    .spinner-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-    */
   .spinner-content {
     position: fixed;
     top: 0;
@@ -164,7 +156,7 @@ body {
   .type {
     display: flex;
     justify-content: center;
-    margin: 3px 0 3px 0;
+    margin: 20px 0 3px 0;
     padding: 1px;
   }
   .pokemon {
