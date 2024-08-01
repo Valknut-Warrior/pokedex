@@ -165,7 +165,7 @@ pokeSearchInput.addEventListener("input", (event) => {
   console.log("Suchbegriff:", filterName);
   console.log("Aktueller Datenbestand:", allPokemonData);
 
-  if (filterName.length >= 1) {
+  if (filterName.length >= 3) {
     // Filtere und zeige die Pokémon nur, wenn der Suchbegriff mindestens 3 Zeichen lang ist
     filterAndShowPokemons(filterName);
   } else {
