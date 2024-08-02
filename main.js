@@ -4,6 +4,7 @@ const loadingIndicator = document.getElementById("loading");
 const pokemonContainer = document.getElementById("pokemon-container");
 const pokeSearchInput = document.getElementById("poke-search-input");
 let currentOffset = 0; // Startwert für Offset
+let currentLimit = 0; // Startwert für Limit
 let allPokemonData = []; // Array, um alle geladenen Pokemon-Daten zu speichern
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -152,8 +153,12 @@ async function loadMorePokemons() {
   await PokemonsAll(16, currentOffset); // Lade weitere Pokémon
 }
 
-// Suchfunktion
+// Lade eine andere generation
+async function loadAnotherGeneration(limit = 0, offset = 0) {
+  await PokemonsAll(limit, offset); // Lade weitere Pokémon
+}
 
+// Suchfunktion
 function filterAndShowPokemons(filterName) {
   const filteredPokemon = allPokemonData.filter((pokemon) => pokemon.name.toLowerCase().includes(filterName));
   renderPokemonCards(filteredPokemon);
@@ -168,9 +173,15 @@ pokeSearchInput.addEventListener("input", (event) => {
   if (filterName.length >= 3) {
     // Filtere und zeige die Pokémon nur, wenn der Suchbegriff mindestens 3 Zeichen lang ist
     filterAndShowPokemons(filterName);
+    DeleteLoadMoreButton();
   } else {
     // Zeige alle Pokémon, wenn weniger als 3 Zeichen im Suchfeld sind
     pokemonContainer.innerHTML = ""; // Leere den Container
     renderPokemonCards(allPokemonData); // Zeige alle Pokémon
   }
 });
+
+// Lösche den LoadMoeButton
+function DeleteLoadMoreButton() {
+  document.getElementById("more-button").style = "display:none";
+}
