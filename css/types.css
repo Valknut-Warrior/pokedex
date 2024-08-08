@@ -41,7 +41,7 @@
 }
 
 .psychic-border-card {
-    border: 2px solid #A890F0;
+    border: 2px solid #F85888;
 }
 
 .bug-border-card {
@@ -125,7 +125,7 @@
 }
 
 .psychic {
-    border: 11px solid #A890F0;
+    border: 11px solid #F85888;
     background-color: rgb(54, 54, 54);
 }
 
@@ -268,7 +268,7 @@
 
 .water-psychic-gradient {
     border: 1px solid transparent;
-    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #A890F0);
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #F85888);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
@@ -310,7 +310,7 @@
 
 .psychic-fairy-gradient {
     border: 1px solid transparent;
-    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A890F0, #F0B6BC);
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F85888, #F0B6BC);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
@@ -359,7 +359,441 @@
 
 .ice-psychic-gradient {
     border: 1px solid transparent;
-    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #98D8D8, #A890F0);
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #98D8D8, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-electric-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #F8D030);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fairy-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F0B6BC, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.psychic-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F85888, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-fairy-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #F0B6BC);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dark-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705848, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.normal-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8A878, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ground-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #E0C068, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-rock-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #B8A038);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-fighting-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #C03028);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dark-ice-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705848, #98D8D8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fire-rock-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #B8A038);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ice-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #98D8D8, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-rock-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #B8A038);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dark-fire-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705848, #F08030);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.rock-dark-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8A038, #705848);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.psychic-grass-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F85888, #78C850);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-dragon-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #7038F8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fire-fighting-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #C03028);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-grass-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #78C850);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-dark-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #705848);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-water-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #6890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-fighting-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #C03028);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.bug-ghost-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8B820, #705898);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dark-ghost-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705848, #705898);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-fairy-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #F0B6BC);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-rock-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #B8A038);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fighting-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #C03028, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-dark-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #705848);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fire-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ground-dragon-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #E0C068, #7038F8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.rock-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8A038, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ground-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #E0C068, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.rock-grass-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8A038, #78C850);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.rock-bug-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8A038, #A8B820);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dragon-psychic-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #7038F8, #F85888);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.water-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #6890F0, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.normal-water-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A8A878, #6890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.rock-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8A038, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ghost-flying-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705898, #A890F0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.poison-dark-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A040A0, #705848);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ghost-dark-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #705898, #705848);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dragon-ground-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #7038F8, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fighting-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #C03028, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.poison-bug-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A040A0, #A8B820);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.poison-fighting-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #A040A0, #C03028);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-ice-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #E0C068);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.psychic-fighting-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F85888, #C03028);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ice-ghost-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #98D8D8, #705898);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.electric-ghost-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F8D030, #705898);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.steel-dragon-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #B8B8D0, #7038F8);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.fire-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.psychic-fire-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F85888, #F08030);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.ground-steel-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #E0C068, #B8B8D0);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.grass-fairy-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #78C850, #F0B6BC);
     background-origin: border-box;
     background-clip: content-box, border-box;
 }

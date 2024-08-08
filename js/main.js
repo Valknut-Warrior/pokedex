@@ -7,9 +7,9 @@ let currentOffset = 0; // Startwert für Offset
 let currentLimit = 0; // Startwert für Limit
 let allPokemonData = []; // Array, um alle geladenen Pokemon-Daten zu speichern
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   // Initiales Laden der Pokémon beim Seitenaufruf
-  (async function () {
+  (async function() {
     await PokemonsAll(16, currentOffset);
   })();
 });
@@ -20,11 +20,16 @@ for (let i = 1; i <= 151; i++) {
   fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
     .then((response) => response.json())
     .then((data) => {
+      showLoading();
       allPokemonData.push(data);
+
+      // Sortiert alle Pokemon über die ID
+      allPokemonData.sort((a, b) => a.id - b.id);
 
       // Falls alle Daten abgerufen wurden, zeige sie an
       if (allPokemonData.length === 151) {
         renderPokemonCards(allPokemonData);
+        hideLoading();
       }
     })
     .catch((error) => console.error("Fehler beim Abrufen der Pokémon-Daten:", error));
@@ -40,8 +45,9 @@ function hideLoading() {
   loadingIndicator.classList.remove("active");
 }
 
-// Hole alle Pokemons aus der API
-async function PokemonsAll(limit = 16, offset = 0) {
+
+// Hole alle Pokemons aus der API für All Generationen
+async function PokemonsAllGeneration(limit = 16, offset = 0) {
   try {
     showLoading();
 
@@ -49,8 +55,39 @@ async function PokemonsAll(limit = 16, offset = 0) {
     let responseAllPokemonAsJson = await response.json();
 
     let pokemonData = responseAllPokemonAsJson.results.map((pokemon) => ({
-      name: pokemon.name,
-      url: pokemon.url,
+      //let pokemonData = allPokemonData.results.map((pokemon) => ({
+      name: pokemon.name, url: pokemon.url
+    }));
+
+    // Speichern Sie die geladenen Pokemon-Daten
+    allPokemonData = allPokemonData.concat(pokemonData);
+
+    // Hier rufen wir getPokeDetails für jedes Pokémon auf
+    let allPokemonDetails = await Promise.all(pokemonData.map((pokemon) => getPokeDetails(pokemon)));
+
+    // Hier rufen wir renderPokemonCards mit allen Details auf
+    renderPokemonCards(allPokemonDetails);
+
+    // Verstecke den Ladeindikator erst hier, nachdem alle Daten geladen und die Karten gerendert wurden
+    hideLoading();
+  } catch (error) {
+    hideLoading();
+    console.error("Fehler beim Laden der Pokemon:", error);
+  }
+}
+
+
+// Hole alle Pokemons aus der API
+async function PokemonsAll(limit = 16, offset = 0) {
+  try {
+    showLoading();
+
+    //let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
+    //let responseAllPokemonAsJson = await response.json();
+
+    //let pokemonData = responseAllPokemonAsJson.results.map((pokemon) => ({
+    let pokemonData = allPokemonData.results.map((pokemon) => ({
+      name: pokemon.name, url: pokemon.url
     }));
 
     // Speichern Sie die geladenen Pokemon-Daten
@@ -88,6 +125,7 @@ function renderPokemonCards(pokemonData) {
     return;
   }
 
+
   console.log("Rendering Pokémon Karten für:", pokemonData);
   pokemonContainer.innerHTML = ""; // Leere den Container
 
@@ -99,10 +137,52 @@ function renderPokemonCards(pokemonData) {
       continue; // Überspringe dieses Pokémon und fahre mit dem nächsten fort
     }
 
+    // Erstelle eine Variable PokeName, die den Namen mit dem ersten Buchstaben großgeschrieben enthält
     let PokeName = String(name).charAt(0).toUpperCase() + name.slice(1);
-    PokeName = PokeName.replace("-f", "_F");
-    PokeName = PokeName.replace("-m", "");
-    PokeName = PokeName.replace("Mrime", "MrMime");
+
+    // Erstelle ein Objekt, das alle Ersetzungen enthält
+    const replacements = {
+      "-f": "_F",
+      "-m": "",
+      "Mrime": "MrMime",
+      "Deoxys-normal": "Deoxys",
+      "Wormadam-plant": "Wormadam",
+      "Mime-jr": "MimeJr",
+      "Porygon-z": "PorygonZ",
+      "Giratina-altered": "Giratina",
+      "Basculin-red-striped": "Basculin",
+      "Darmanitan-standard": "Darmanitan",
+      "Pumpkaboo-average": "Pumpkaboo",
+      "Tornadus-incarnate": "Tornadus",
+      "Thundurus-incarnate": "Thundurus",
+      "Landorus-incarnate": "Landorus",
+      "Keldeo-ordinary": "Keldeo",
+      "Meloetta-aria": "Meloetta",
+      "Meowsticale": "Meowstic",
+      "Aegislash-shield": "Aegislash",
+      "Gourgeist-average": "Gourgeist",
+      "Zygarde-50": "Zygarde",
+      "Oricorio-baile": "Oricorio",
+      "Wishiwashi-solo": "Wishiwashi",
+      "Lycanrocidday": "Lycanroc",
+      "Minior-redeteor": "Minior",
+      "Mimikyu-disguised": "Mimikyu",
+      "Tapu_Fini": "Tapu-Fini",
+      "Toxtricity-amped": "Toxtricity-Lowkey",
+      "Mr-rime": "MrRime",
+      "Eiscue-ice": "Eiscue",
+      "Indeedeeale": "Indeedee",
+      "Morpeko_Full-belly": "Morpeko",
+      "Urshifu-single-strike": "Urshifu",
+      "Basculegionale": "Basculegion",
+      "Enamorus-incarnate": "Enamorus"
+    };
+
+    // Iteriere über die Einträge im replacements-Objekt
+    for (let [key, value] of Object.entries(replacements)) {
+      // Ersetze alle Vorkommen des Schlüssels (key) in PokeName durch den Wert (value)
+      PokeName = PokeName.replace(key, value);
+    }
 
     let type = types.map((t) => t.type.name).join(" / ");
     let hp = stats.find((stat) => stat.stat.name === "hp")?.base_stat || "N/A";
@@ -148,14 +228,17 @@ function renderPokemonCards(pokemonData) {
 }
 
 // Funktion zum Laden von mehr Pokémon
+
 async function loadMorePokemons() {
   currentOffset += 16; // Erhöhe den Offset um 16 (oder eine andere gewünschte Anzahl)
   await PokemonsAll(16, currentOffset); // Lade weitere Pokémon
+
 }
+
 
 // Lade eine andere generation
 async function loadAnotherGeneration(limit = 0, offset = 0) {
-  await PokemonsAll(limit, offset); // Lade weitere Pokémon
+  await PokemonsAllGeneration(limit, offset); // Lade weitere Pokémon
 }
 
 // Suchfunktion
