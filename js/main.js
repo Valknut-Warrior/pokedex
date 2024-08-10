@@ -55,7 +55,6 @@ async function PokemonsAllGeneration(limit = 16, offset = 0) {
     let responseAllPokemonAsJson = await response.json();
 
     let pokemonData = responseAllPokemonAsJson.results.map((pokemon) => ({
-      //let pokemonData = allPokemonData.results.map((pokemon) => ({
       name: pokemon.name, url: pokemon.url
     }));
 
@@ -82,10 +81,6 @@ async function PokemonsAll(limit = 16, offset = 0) {
   try {
     showLoading();
 
-    //let response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`);
-    //let responseAllPokemonAsJson = await response.json();
-
-    //let pokemonData = responseAllPokemonAsJson.results.map((pokemon) => ({
     let pokemonData = allPokemonData.results.map((pokemon) => ({
       name: pokemon.name, url: pokemon.url
     }));
@@ -220,6 +215,9 @@ function renderPokemonCards(pokemonData) {
               <div><small>Height</small><h5 class="height">${height / 10} m</h5></div>      
             </div>
             <div class="type">${typeInfo}</div>
+            <div class="popuo-button">
+            <button onclick="showPopupOpen()">Test</button>
+</div>
           </div>
         </div>
       </div>
@@ -256,7 +254,6 @@ pokeSearchInput.addEventListener("input", (event) => {
   if (filterName.length >= 3) {
     // Filtere und zeige die Pokémon nur, wenn der Suchbegriff mindestens 3 Zeichen lang ist
     filterAndShowPokemons(filterName);
-    DeleteLoadMoreButton();
   } else {
     // Zeige alle Pokémon, wenn weniger als 3 Zeichen im Suchfeld sind
     pokemonContainer.innerHTML = ""; // Leere den Container
@@ -264,7 +261,13 @@ pokeSearchInput.addEventListener("input", (event) => {
   }
 });
 
-// Lösche den LoadMoeButton
-function DeleteLoadMoreButton() {
-  document.getElementById("more-button").style = "display:none";
+
+// Popup Öffnen
+function showPopupOpen() {
+  document.getElementById("popup").style.display = "block";
+}
+
+// Popup schließen
+function showPopupClosed() {
+  document.getElementById("popup").style.display = "none";
 }
