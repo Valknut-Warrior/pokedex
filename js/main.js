@@ -220,8 +220,8 @@ function renderPokemonCards(pokemonData) {
               <div class="space"></div>
               <div><small>Height</small><h5 class="height">${height / 10} m</h5></div>      
             </div>
-            <div class="type>${typeInfo}"</div>
-            <div class="card-button ${typeClassButton}" onclick="redirectToPokemonPage(${PokeName})">
+            <div class="type">${typeInfo}</div>
+            <div class="card-button ${typeClassButton}" onclick="redirectToPokemonPage('${PokeName}')">
               <button class="button-none">Info</button>
             </div>
           </div>
