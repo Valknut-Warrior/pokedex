@@ -72,6 +72,80 @@
     border: 2px solid #F0B6BC;
 }
 
+/* Button Farbe Card */
+
+.normal-background-button {
+    background-color: #A8A878;
+}
+
+.fire-background-button {
+    background-color: #F08030;
+}
+
+.water-background-button {
+    background-color: #6890F0;
+}
+
+.electric-background-button {
+    background-color: #F8D030;
+}
+
+.grass-background-button {
+    background-color: #78C850;
+}
+
+.ice-background-button {
+    background-color: #98D8D8;
+}
+
+.fighting-background-button {
+    background-color: #C03028;
+}
+
+.poison-background-button {
+    background-color: #A040A0;
+}
+
+.ground-background-button {
+    background-color: #E0C068;
+}
+
+.flying-background-button {
+    background-color: #A890F0;
+}
+
+.psychic-background-button {
+    background-color: #F85888;
+}
+
+.bug-background-button {
+    background-color: #A8B820;
+}
+
+.rock-background-button {
+    background-color: #B8A038;
+}
+
+.ghost-background-button {
+    background-color: #705898;
+}
+
+.dragon-background-button {
+    background-color: #7038F8;
+}
+
+.dark-background-button {
+    background-color: #705848;
+}
+
+.steel-background-button {
+    background-color: #B8B8D0;
+}
+
+.fairy-background-button {
+    background-color: #F0B6BC;
+}
+
 /* Einzelne Typen um den Image */
 
 .normal {

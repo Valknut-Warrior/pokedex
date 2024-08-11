@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
   (async function() {
     await PokemonsAll(16, currentOffset);
   })();
+
+  checkURL();
+
 });
 
 // Speichere 151 Pokemons in allPokemonData ab
@@ -193,6 +196,9 @@ function renderPokemonCards(pokemonData) {
     // Erstellen Sie die CSS-Klasse für den Rand basierend auf dem ersten Typ
     let typeClass = `${types[0]?.type?.name || "default"}-border-card`;
 
+    // Erstellen Sie die CSS-Klasse für den Rand basierend auf dem ersten Typ
+    let typeClassButton = `${types[0]?.type?.name || "default"}-background-button`;
+
     pokemonContainer.innerHTML += `    
       <div class="card has-text-weight-bold has-text-white pokemon ${typeClass}">
         <div class="card-header">
@@ -214,10 +220,10 @@ function renderPokemonCards(pokemonData) {
               <div class="space"></div>
               <div><small>Height</small><h5 class="height">${height / 10} m</h5></div>      
             </div>
-            <div class="type">${typeInfo}</div>
-            <div class="popuo-button">
-            <button onclick="showPopupOpen()">Test</button>
-</div>
+            <div class="type>${typeInfo}"</div>
+            <div class="card-button ${typeClassButton}" onclick="redirectToPokemonPage(${PokeName})">
+              <button class="button-none">Info</button>
+            </div>
           </div>
         </div>
       </div>
@@ -270,4 +276,10 @@ function showPopupOpen() {
 // Popup schließen
 function showPopupClosed() {
   document.getElementById("popup").style.display = "none";
+}
+
+// Weiterleitung auf die details Seite
+function redirectToPokemonPage(pokemonName) {
+  const urlFriendlyName = pokemonName.toLowerCase();
+  window.location.href = `http://localhost:5173/details.html?pokemon=${urlFriendlyName}`;
 }
