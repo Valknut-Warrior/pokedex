@@ -128,7 +128,7 @@ function renderPokemonCards(pokemonData) {
   pokemonContainer.innerHTML = ""; // Leere den Container
 
   for (let i = 0; i < pokemonData.length; i++) {
-    let { id, name, height, weight, types = [], stats = [] } = pokemonData[i];
+    let { id, name, height, weight, types = [], stats = [], species } = pokemonData[i];
 
     if (id === undefined || name === undefined || height === undefined || weight === undefined) {
       console.error(`Pokémon-Daten ungültig oder unvollständig für Eintrag:`, pokemonData[i]);
@@ -211,7 +211,7 @@ function renderPokemonCards(pokemonData) {
         </div>
         <div class="card-content has-text-centered">
           <div class="">
-            <div class="title">${PokeName}</div>
+            <div class="title">${species.name}</div>
             <div class="hp">HP ${hp}</div>
           </div>
           <div class="stats columns is-mobile">
@@ -221,7 +221,7 @@ function renderPokemonCards(pokemonData) {
               <div><small>Height</small><h5 class="height">${height / 10} m</h5></div>      
             </div>
             <div class="type">${typeInfo}</div>
-            <div class="card-button ${typeClassButton}" onclick="redirectToPokemonPage('${PokeName}')">
+            <div class="card-button ${typeClassButton}" onclick="redirectToPokemonPage('${PokeName}', '${species.name}')">
               <button class="button-none">Info</button>
             </div>
           </div>
@@ -279,7 +279,7 @@ function showPopupClosed() {
 }
 
 // Weiterleitung auf die details Seite
-function redirectToPokemonPage(pokemonName) {
-  const urlFriendlyName = pokemonName.toLowerCase();
+function redirectToPokemonPage(pokemonName, speciesName) {
+  const urlFriendlyName = speciesName.toLowerCase();
   window.location.href = `http://localhost:5173/details.html?pokemon=${urlFriendlyName}`;
 }

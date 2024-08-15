@@ -13,11 +13,103 @@
   <title>Pokémon Details</title>
 </head>
 <body>
-<div id="pokemon-container">
-  <h1 id="pokemon-name"></h1>
-  <img id="pokemon-image" src="" alt="">
-  <!-- Weitere Pokémon-Details hier -->
-</div>
-<script src="js/details.js"></script>
+
+<div class="root">
+  <div class="header-details">
+    <div class="logo">
+      <a href="index.html"><img src="/logo.png" alt="Pokèdex-Logo"></a>
+    </div>
+
+    <div class="space"></div>
+
+
+    <div class="search">
+      <input id="poke-search-input" type="text" class="searchTerm" placeholder="Which Pokemon are you searching for?">
+    </div>
+
+
+  </div>
+  <div class="main">
+
+
+    <div class="spinner-content" id="loading">
+      <div class="loader"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+
+
+    <div class="content" id="pokemon-container">
+
+      <div class="container-card">
+        <h2 class="details-name">charmeleon</h2>
+        <p class="details.id"># 005</p>
+
+        <figure class="container-card-img"><a href="/details/javascript:void">
+          <img class="animation-up-down" alt="charmeleon" title="charmeleon"
+               src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png"></a>
+        </figure>
+
+        <div class="fire type-item w-100"><p class="mb-0 text-uppercase">fire</p></div>
+
+      </div>
+
+      <div class="container-details">
+        <p class="flavor-text">lorem ipsum lorem Ipsum lorem Ipsum lorem ipsum lorem Ipsum lorem Ipsum</p>
+        <div class="container-attributes">
+
+          <div class="info-container">
+            <h4>Height</h4>
+            <p>1.1 m</p>
+          </div>
+
+          <div class="info-container">
+            <h4>Weight</h4>
+            <p>19 Kg</p>
+          </div>
+
+          <div class="info-container">
+            <h4>Gender</h4>
+            <p>12.5%♀ 87.5%♂</p>
+          </div>
+
+          <div class="info-container">
+            <h4>Capture rate</h4>
+            <p>45%</p>
+          </div>
+
+          <div class="info-container">
+            <h4>Abilities</h4>
+            <p>blaze, solar-power</p>
+          </div>
+
+          <div class="info-container">
+            <h4>Habitat</h4>
+            <p>mountain</p>
+          </div>
+        </div>
+      </div>
+
+      <!--
+      <h1 id="pokemon-name"></h1>
+      <img id="pokemon-image" src="" alt="">-->
+
+      <!-- Weitere Pokémon-Details hier -->
+
+    </div>
+
+
+    <div class="footer-details">
+      <div class="footer-info">
+        Developed by Daniel aka Valknut-Warrior
+      </div>
+      <div class="space"></div>
+      <div class="footer-icons">
+        vbnv
+      </div>
+    </div>
+  </div>
+
+
+  <script src="js/details.js"></script>
 </body>
 </html>
