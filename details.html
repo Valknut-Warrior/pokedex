@@ -11,6 +11,8 @@
   <link rel="manifest" href="/icon/site.webmanifest">
 
   <title>Pokémon Details</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 
@@ -40,20 +42,12 @@
 
     <div class="content" id="pokemon-container">
 
-      <div class="container-card">
-        <h2 class="details-name">charmeleon</h2>
-        <p class="details.id"># 005</p>
+      <div class="container-card" id="pokemon-details-card">
 
-        <figure class="container-card-img"><a href="/details/javascript:void">
-          <img class="animation-up-down" alt="charmeleon" title="charmeleon"
-               src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png"></a>
-        </figure>
-
-        <div class="fire type-item w-100"><p class="mb-0 text-uppercase">fire</p></div>
 
       </div>
 
-      <div class="container-details">
+      <div class="container-details" id="container-details">
         <p class="flavor-text">lorem ipsum lorem Ipsum lorem Ipsum lorem ipsum lorem Ipsum lorem Ipsum</p>
         <div class="container-attributes">
 
@@ -79,7 +73,7 @@
 
           <div class="info-container">
             <h4>Abilities</h4>
-            <p>blaze, solar-power</p>
+            <p id="abilities">blaze, solar-power</p>
           </div>
 
           <div class="info-container">
@@ -89,11 +83,11 @@
         </div>
       </div>
 
-      <!--
-      <h1 id="pokemon-name"></h1>
-      <img id="pokemon-image" src="" alt="">-->
+      <div class="container-stats">
+        <!-- Container für den Balken Graphen -->
+        <canvas id="statsChart" class="stats" width="0" height="0"></canvas>
+      </div>
 
-      <!-- Weitere Pokémon-Details hier -->
 
     </div>
 
@@ -108,8 +102,9 @@
       </div>
     </div>
   </div>
+</div>
 
+<script src="js/details.js"></script>
 
-  <script src="js/details.js"></script>
 </body>
 </html>

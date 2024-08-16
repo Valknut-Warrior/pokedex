@@ -1,5 +1,5 @@
-@charset "UTF-8";
 /* Pokemon Types */
+
 /* Pokemon Types */
 :root {
   --color-normal: rgba(168, 168, 120, 1);
@@ -95,6 +95,7 @@
 }
 
 /* Button Farbe Card */
+
 .normal-background-button {
   background-color: #A8A878;
 }
@@ -168,6 +169,7 @@
 }
 
 /* Einzelne Typen um den Image */
+
 .normal {
   border: 10px solid #A8A878;
   background-color: rgb(54, 54, 54);
@@ -259,6 +261,7 @@
 }
 
 /* Gradient-Klassen für zwei Typen */
+
 .fire-water-gradient {
   border: 1px solid transparent;
   background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #6890F0);
@@ -280,6 +283,7 @@
   background-clip: content-box, border-box;
 }
 
+
 .fire-flying-gradient {
   border: 1px solid transparent;
   background: linear-gradient(rgb(54, 54, 54), rgb(54, 54, 54)), linear-gradient(135deg, #F08030, #A890F0);
@@ -293,6 +297,7 @@
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
+
 
 .bug-poison-gradient {
   border: 1px solid transparent;
@@ -888,5 +893,3 @@
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
-
-/*# sourceMappingURL=types.css.map */

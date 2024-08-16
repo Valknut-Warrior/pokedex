@@ -214,7 +214,7 @@ function renderPokemonCards(pokemonData) {
             <div class="title">${species.name}</div>
             <div class="hp">HP ${hp}</div>
           </div>
-          <div class="stats columns is-mobile">
+          <div class="info-pokemon-main">
             <div class="extra-info">
               <div><small>Weight</small><h5 class="weight">${weight / 10} Kg</h5></div>
               <div class="space"></div>
