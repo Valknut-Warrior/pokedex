@@ -6,6 +6,7 @@ const pokeSearchInput = document.getElementById("poke-search-input");
 let currentOffset = 0; // Startwert für Offset
 let currentLimit = 0; // Startwert für Limit
 let allPokemonData = []; // Array, um alle geladenen Pokemon-Daten zu speichern
+const baseURL = window.location.origin; // Gibt die Basis-URL zurück
 
 document.addEventListener("DOMContentLoaded", function() {
   // Initiales Laden der Pokémon beim Seitenaufruf
@@ -281,5 +282,5 @@ function showPopupClosed() {
 // Weiterleitung auf die details Seite
 function redirectToPokemonPage(pokemonName, speciesName) {
   const urlFriendlyName = speciesName.toLowerCase();
-  window.location.href = `http://localhost:5173/details.html?pokemon=${urlFriendlyName}`;
+  window.location.href = `${baseURL}/details.html?pokemon=${urlFriendlyName}`;
 }

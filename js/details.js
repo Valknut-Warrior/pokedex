@@ -1,9 +1,11 @@
 "use strict";
 
 const loadingIndicator = document.getElementById("loading");
+const baseURL = window.location.origin; // Gibt die Basis-URL zurück
+document.getElementById("search-field").style.display = "none";
+
 
 document.addEventListener("DOMContentLoaded", function() {
-
   showLoading();
   checkURL();
 });
@@ -17,45 +19,27 @@ function checkURL() {
       .then(response => response.json())
       .then(data => {
         if (data) {
-          displayPokemonDetails(data);     // Aufruf der Funktion zur Anzeige der Details
-          renderTypeButtons(data.types); // Typen-Buttons anzeigen
+          displayPokemonDetails(data);     // Zeige die Hauptdetails des Pokémon an
+          renderTypeButtons(data.types);   // Typen-Buttons anzeigen
           renderBarChart(data.stats, data.types); // Daten anzeigen
+
+          // Rufe zusätzliche Details ab, nachdem die Hauptseite geladen ist
           fetchPokemonDetails(pokemonName);  // Pokémon-Details abrufen und anzeigen
-
-
-          setTimeout(() => {
-            hideLoading(); // Ladeanzeige stoppen
-          }, "500");
-
-
         } else {
           console.error("Fehler beim Laden der Pokémon-Daten: Keine Daten erhalten");
-
-          setTimeout(() => {
-            hideLoading(); // Ladeanzeige stoppen
-          }, "500");
-
         }
       })
       .catch(error => {
         console.error("Fehler beim Laden der Pokémon-Daten:", error);
-
-        setTimeout(() => {
-          hideLoading(); // Ladeanzeige stoppen
-        }, "500");
-
+      })
+      .finally(() => {
+        hideLoading(); // Ladeanzeige stoppen, unabhängig vom Ergebnis
       });
   } else {
     console.error("Fehler: Kein Pokémon-Name in der URL gefunden");
-
-    setTimeout(() => {
-      hideLoading(); // Ladeanzeige stoppen
-    }, "500");
-
+    hideLoading(); // Ladeanzeige stoppen
   }
-
 }
-
 
 function renderTypeButtons(types) {
   const typesContainer = document.getElementById("types-container");
@@ -178,34 +162,74 @@ function getTypeColor(type) {
   return typeColors[type] || "rgba(128, 128, 128, 1)"; // Default fallback color
 }
 
+
+let chart; // Globale Variable außerhalb der Funktion
+
 function renderBarChart(stats, types) {
   const ctx = document.getElementById("statsChart").getContext("2d");
+
+  // Falls das Diagramm bereits existiert, zerstöre es
+  if (chart) {
+    chart.destroy();
+  }
 
   // Verwende die Farbe des ersten Typs als borderColor
   const borderColor = getTypeColor(types[0].type.name);
   const backgroundColor = borderColor.replace("1)", "0.6)"); // Anpassung für den Hintergrund
 
-  const chart = new Chart(ctx, {
+
+  // Weisen Sie das neu erstellte Diagramm der globalen 'chart'-Variable zu
+  chart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: stats.map(stat => stat.stat.name.toUpperCase()),
+      labels: stats.map(stat => stat.stat.name.toUpperCase()), // Labels für die X-Achse
       datasets: [{
-        label: "Base Stats",
-        data: stats.map(stat => stat.base_stat),
-        backgroundColor: backgroundColor,
-        borderColor: borderColor,
-        borderWidth: 1
+        label: "Stats",
+        data: stats.map(stat => stat.base_stat), // Daten für das Diagramm
+        backgroundColor: backgroundColor, // Hintergrundfarbe der Balken
+        borderColor: borderColor, // Randfarbe der Balken
+        borderWidth: 1, // Breite des Rands
+        color: borderColor // Farbe der Balken (optional)
       }]
     },
     options: {
+      responsive: true, // Das Diagramm reagiert auf Größenänderungen des Containers
+      maintainAspectRatio: false, // Das Diagramm kann sein Seitenverhältnis ändern, um den Container besser auszufüllen
       scales: {
         y: {
-          beginAtZero: true,
-          max: 150 // Oder passe dies an die erwarteten Werte an
+          beginAtZero: true, // Y-Achse beginnt bei 0
+          max: 200, // Maximale Höhe der Y-Achse (kann angepasst werden)
+          ticks: {
+            color: "white" // Farbe der Y-Achse-Ticks (Text)
+          }
+        },
+        x: {
+          ticks: {
+            color: "white" // Farbe der X-Achse-Ticks (Text)
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: "white" // Farbe der Legende
+          }
+        },
+        tooltip: {
+          titleColor: "white", // Farbe der Tooltip-Titel
+          bodyColor: "white",  // Farbe der Tooltip-Inhalte
+          footerColor: "white" // Farbe der Tooltip-Footer
         }
       }
     }
   });
+
+  // Fallback: Setze die Größe des Canvas-Elements nach dem Rendern zurück
+  const canvas = document.getElementById("statsChart");
+  canvas.style.width = "95%";
+  //canvas.style.minwidth = "1459px";
+  canvas.style.height = "350px";
+  canvas.style.display = "flex";
 
   console.log("Chart erstellt:", chart); // Debugging: Überprüfen, ob der Graph erstellt wird
 }
@@ -220,10 +244,15 @@ async function fetchPokemonDetails(pokemonName) {
     const speciesResponse = await fetch(pokemonData.species.url);
     const speciesData = await speciesResponse.json();
 
+    // Neue API-Anfrage für die Evolutionskette
+    const evolutionChainResponse = await fetch(speciesData.evolution_chain.url);
+    const evolutionChainData = await evolutionChainResponse.json();
+
     // Fähigkeiten und Habitat aus den Haupt- und Speziesdaten extrahieren
     const abilities = pokemonData.abilities.map(abilityInfo => abilityInfo.ability.name).join(", ");
     const habitat = speciesData.habitat ? speciesData.habitat.name : "Unknown";
     const genderRate = speciesData.gender_rate;
+    const captureRate = speciesData.capture_rate;
 
     // Flavor-Text extrahieren (auf Deutsch oder Englisch, falls nicht verfügbar)
     const flavorTextEntry = speciesData.flavor_text_entries.find(entry => entry.language.name === "de") ||
@@ -237,8 +266,11 @@ async function fetchPokemonDetails(pokemonName) {
     } else {
       const femalePercentage = (genderRate / 8) * 100;
       const malePercentage = 100 - femalePercentage;
-      genderDistribution = `Male: ${malePercentage}%, Female: ${femalePercentage}%`;
+      genderDistribution = `&#9792 ${femalePercentage}% &#9794 ${malePercentage}% `;
     }
+
+    // Evolutionskette parsen
+    const evolutions = parseEvolutionChain(evolutionChainData.chain);
 
     // Anzeige der abgerufenen Daten
     renderPokemonDetails({
@@ -247,26 +279,167 @@ async function fetchPokemonDetails(pokemonName) {
       habitat,
       flavorText,
       genderDistribution,
+      captureRate,
       types: pokemonData.types,
-      stats: pokemonData.stats
+      stats: pokemonData.stats,
+      evolutions
     });
   } catch (error) {
     console.error("Fehler beim Laden der Pokémon-Daten:", error);
   }
 }
 
+// Funktion zum Parsen der Evolutionskette
+function parseEvolutionChain(chain) {
+  const evolutions = [];
+  let currentStage = chain;
+
+  do {
+    evolutions.push({
+      name: currentStage.species.name,
+      url: currentStage.species.url
+    });
+    currentStage = currentStage.evolves_to[0];
+  } while (currentStage && currentStage.hasOwnProperty("evolves_to"));
+
+  return evolutions;
+}
+
+
 function renderPokemonDetails(details) {
-  // Füge die Informationen in die entsprechenden HTML-Elemente ein
 
-  document.getElementById("pokemon-name").innerText = details.name;
-  document.getElementById("abilities").innerText = details.abilities;
-  document.getElementById("habitat").innerText = details.habitat;
+  document.getElementById("abilities").innerHTML = `<h4>Abilities</h4>
+            <p>${details.abilities}</p>`;
+
+
+  document.getElementById("habitat").innerHTML = ` <h4>Habitat</h4>
+            <p>${details.habitat}</p>`;
+
   document.getElementById("flavor-text").innerText = details.flavorText;
-  document.getElementById("gender-distribution").innerText = details.genderDistribution;
+  document.getElementById("gender-distribution").innerHTML = `<h4>Gender</h4>
+            <p>${details.genderDistribution}</p>`;
+
+  document.getElementById("capture-rate").innerHTML = `<h4>Capture rate</h4>
+            <p>${details.captureRate}%</p>`;
 
 
-  // Typen-Buttons und Diagramme rendern
   renderTypeButtons(details.types);
   renderBarChart(details.stats, details.types);
+  renderEvolutionChain(details.evolutions);
   hideLoading();
+}
+
+// Funktion zum Rendern der Evolutionskette
+function renderEvolutionChain(evolutions) {
+  const container = document.querySelector(".container-evolution");
+  container.innerHTML = ""; // Vorhandene Inhalte löschen
+
+  // Erstelle einen Container für die gesamte Evolutionskette
+  const evolutionWrapper = document.createElement("div");
+  evolutionWrapper.classList.add("evolution-wrapper");
+
+  // Erstelle und füge die Überschrift hinzu (außerhalb der Schleife)
+  const headlineTagElement = document.createElement("h2");
+  headlineTagElement.innerText = "Evolution";
+  headlineTagElement.classList.add("headline-evolution");
+  container.appendChild(headlineTagElement); // Füge die Überschrift dem Container hinzu
+
+  evolutions.forEach((evolution, index) => {
+    // Erstelle ein Container-Element für das Pokémon
+    const evolutionElement = document.createElement("div");
+    evolutionElement.classList.add("evolution-item");
+
+    // Erstelle den Namen des Pokémon
+    let pokemonName = evolution.name.charAt(0).toUpperCase() + evolution.name.slice(1);
+
+    // Erstelle ein Objekt, das alle Ersetzungen enthält
+    const replacements = {
+      "-f": "_F",
+      "-m": "",
+      "Mrime": "MrMime",
+      "Deoxys-normal": "Deoxys",
+      "Wormadam-plant": "Wormadam",
+      "Mime-jr": "MimeJr",
+      "Porygon-z": "PorygonZ",
+      "Giratina-altered": "Giratina",
+      "Basculin-red-striped": "Basculin",
+      "Darmanitan-standard": "Darmanitan",
+      "Pumpkaboo-average": "Pumpkaboo",
+      "Tornadus-incarnate": "Tornadus",
+      "Thundurus-incarnate": "Thundurus",
+      "Landorus-incarnate": "Landorus",
+      "Keldeo-ordinary": "Keldeo",
+      "Meloetta-aria": "Meloetta",
+      "Meowsticale": "Meowstic",
+      "Aegislash-shield": "Aegislash",
+      "Gourgeist-average": "Gourgeist",
+      "Zygarde-50": "Zygarde",
+      "Oricorio-baile": "Oricorio",
+      "Wishiwashi-solo": "Wishiwashi",
+      "Lycanrocidday": "Lycanroc",
+      "Minior-redeteor": "Minior",
+      "Mimikyu-disguised": "Mimikyu",
+      "Tapu_Fini": "Tapu-Fini",
+      "Toxtricity-amped": "Toxtricity-Lowkey",
+      "Mr-rime": "MrRime",
+      "Eiscue-ice": "Eiscue",
+      "Indeedeeale": "Indeedee",
+      "Morpeko_Full-belly": "Morpeko",
+      "Urshifu-single-strike": "Urshifu",
+      "Basculegionale": "Basculegion",
+      "Enamorus-incarnate": "Enamorus"
+    };
+
+    // Iteriere über die Einträge im replacements-Objekt
+    for (let [key, value] of Object.entries(replacements)) {
+      // Ersetze alle Vorkommen des Schlüssels (key) in pokemonName durch den Wert (value)
+      pokemonName = pokemonName.replace(key, value);
+    }
+
+    // Füge den Text mit dem Pokémon-Namen hinzu
+    const nameElement = document.createElement("p");
+    nameElement.innerText = evolution.name.charAt(0).toUpperCase() + evolution.name.slice(1);
+    evolutionElement.appendChild(nameElement);
+
+    // Extrahiere die ID des Pokémon aus der URL
+    const pokeID = evolution.url.split("/")[evolution.url.split("/").length - 2];
+
+    // Füge den Text mit der Pokémon-ID hinzu, formatiert mit führender Null
+    const idElement = document.createElement("p");
+    idElement.innerText = `#${pokeID.padStart(3, "0")}`; // ID mit führender Null
+    idElement.classList.add("pokemon-id");
+    evolutionElement.appendChild(idElement);
+
+    // Erstelle einen <a>-Tag um das Bild verlinkbar zu machen
+    const linkElement = document.createElement("a");
+    linkElement.href = `${baseURL}/details.html?pokemon=/${evolution.name}`; // Link zur Pokémon-Seite
+    linkElement.target = "_blank"; // Öffnet den Link in einem neuen Tab
+
+    // Füge das Bild des Pokémon hinzu
+    const imgElement = document.createElement("img");
+    imgElement.src = `http://static.pokemonpets.com/images/monsters-images-300-300/${pokeID}-${pokemonName}.webp`;
+    imgElement.alt = evolution.name.charAt(0).toUpperCase() + evolution.name.slice(1);
+    imgElement.classList.add("evolution-image");
+
+    // Füge das Bild dem Evolutionselement hinzu
+    linkElement.appendChild(imgElement);
+
+    // Füge den Link (mit dem Bild) dem Evolutionselement hinzu
+    evolutionElement.appendChild(linkElement);
+
+
+    // Füge das Evolutionselement dem Wrapper hinzu
+    evolutionWrapper.appendChild(evolutionElement);
+
+    // Falls dies nicht das letzte Element ist, füge einen Pfeil hinzu
+    if (index < evolutions.length - 1) {
+      const arrowElement = document.createElement("span");
+      arrowElement.classList.add("evolution-arrow");
+      arrowElement.innerHTML = "<img src='right-arrow-next-svgrepo-com.svg' alt='Arrow'>"; // Verwende einen Textpfeil
+      evolutionWrapper.appendChild(arrowElement);
+    }
+  });
+
+  // Füge den Wrapper dem Container hinzu
+  container.appendChild(evolutionWrapper);
 }
